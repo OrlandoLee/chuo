@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601004234) do
+ActiveRecord::Schema.define(version: 20140601012529) do
+
+  create_table "businesses", force: true do |t|
+    t.string   "name"
+    t.string   "qr_code"
+    t.integer  "random"
+    t.integer  "get_one_amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "businesses", ["qr_code"], name: "index_businesses_on_qr_code", using: :btree
+
+  create_table "transactions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "business_id"
+    t.boolean  "exchange",    default: false
+    t.integer  "amount",      default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transactions", ["business_id"], name: "index_transactions_on_business_id", using: :btree
+  add_index "transactions", ["user_id"], name: "index_transactions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -26,7 +49,7 @@ ActiveRecord::Schema.define(version: 20140601004234) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role"
+    t.integer  "role",                   default: 1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
