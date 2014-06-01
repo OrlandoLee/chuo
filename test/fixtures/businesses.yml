@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  qr_code: MyString
+  random: 1
+  get_one_amount: 1
+
+two:
+  name: MyString
+  qr_code: MyString
+  random: 1
+  get_one_amount: 1
