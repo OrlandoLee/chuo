@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601012529) do
+ActiveRecord::Schema.define(version: 20140603041146) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140601012529) do
     t.integer  "get_one_amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quantity"
   end
 
   add_index "businesses", ["qr_code"], name: "index_businesses_on_qr_code", using: :btree
