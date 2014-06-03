@@ -1,4 +1,6 @@
 Chuo::Application.routes.draw do
+  resources :businesses
+
   devise_for :users
   get "display/index"
   # The priority is based upon order of creation: first created -> highest priority.

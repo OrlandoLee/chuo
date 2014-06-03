@@ -2,12 +2,8 @@
 
 one:
   name: MyString
-  qr_code: MyString
-  random: 1
-  get_one_amount: 1
+  quantity: 1
 
 two:
   name: MyString
-  qr_code: MyString
-  random: 1
-  get_one_amount: 1
+  quantity: 1
