@@ -12,7 +12,7 @@ class DisplayController < ApplicationController
       if scanned
         render text: "You have already scanned the code."
       else  
-        Transaction.create(user_id: current_user.id, business_id: business.id) #default is one
+        Transaction.create(user_id: current_user.id, business_id: business.id, amount: business.quantity) #default is one
       end
     rescue
       render text:"please scan the code again"
