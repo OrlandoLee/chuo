@@ -1,0 +1,33 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#invitation_button").click(function(e){
+		var code = $("#invitation_code").val()
+		if (code != "secret")
+		{
+			alert("对不起您的邀请码不正确");
+			e.preventDefault();
+		} 
+	    });
+});
+</script>
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+  <div><%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+  invitation code:<br/>
+  <input type="text" id="invitation_code"/><br/>
+  <div id="invitation_button"><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
