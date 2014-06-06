@@ -1,6 +1,12 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  before_action :check_admin!
+  
+  def check_admin!
+    redirect_to root_path unless current_user.admin?
+  end
+  
   # GET /businesses
   # GET /businesses.json
   def index
@@ -10,6 +16,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
+    @qr_code = RQRCode::QRCode.new("#{request.host}:#{request.port}/display/new/#{@business.qr_code}",:size => 8, :level => :h)
   end
 
   # GET /businesses/new
