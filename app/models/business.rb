@@ -7,4 +7,5 @@ class Business < ActiveRecord::Base
   def generate_qrcode_hash
     Digest::SHA1.hexdigest "#{name}-#{random}-#{quantity}-#{created_at}"        
   end
+  
 end
