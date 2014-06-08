@@ -11,7 +11,7 @@ $(document).ready(function(){
 	    });
 });
 </script>
-<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="signupModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
       <div class="modal-header">
@@ -37,6 +37,7 @@ $(document).ready(function(){
               <%= f.submit "Sign up", class: 'btn btn-primary btn-lg btn-block', id: 'invitation_button'%>
              <% end %>
             </div>
+			<%= render "devise/shared/links" %>
           </form>
       </div>
   </div>
