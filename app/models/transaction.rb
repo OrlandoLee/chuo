@@ -35,6 +35,7 @@ class Transaction < ActiveRecord::Base
     if Transaction.allow_exchange?(user_amount,business_name)
       business = Business.find_by_name(business_name)
       Transaction.create(user_id: user_id, business_id: business.id, exchange: true, amount: business.get_one_amount)
+      #send email
       render text:"Succeed"
     else
       render text:"You may have exchanged"
