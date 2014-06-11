@@ -16,7 +16,7 @@ class BusinessesController < ApplicationController
   # GET /businesses/1
   # GET /businesses/1.json
   def show
-    @qr_code = RQRCode::QRCode.new("#{request.host}:#{request.port}/display/new/#{@business.qr_code}",:size => 8, :level => :h)
+    @qr_code = RQRCode::QRCode.new("http://#{request.host}:#{request.port}/display/new/#{@business.qr_code}",:size => 8, :level => :h)
   end
 
   # GET /businesses/new
