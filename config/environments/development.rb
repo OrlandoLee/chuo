@@ -35,7 +35,7 @@ Chuo::Application.configure do
       address:              'smtp.gmail.com',
       port:                 587,
       domain:               'chuochuo.me',
-      user_name:            'dealfinderorlando@gmail.com',
+      user_name:            'help.chuochuo.me@gmail.com',
       password:             'csdyb5twvlbo',
       authentication:       'plain',
       enable_starttls_auto: true  }
