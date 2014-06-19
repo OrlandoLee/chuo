@@ -4,10 +4,11 @@ class Transaction < ActiveRecord::Base
   def self.squash(user_id)
     result = {}
     all_user_record = Transaction.where({user_id:user_id})
-    sign = 1
     all_user_record.each do |r|
       if r.exchange
         sign = -1
+      else
+        sign = 1
       end
       business_name = r.business.name
       if result.has_key?(business_name)
@@ -36,9 +37,9 @@ class Transaction < ActiveRecord::Base
       business = Business.find_by_name(business_name)
       Transaction.create(user_id: user_id, business_id: business.id, exchange: true, amount: business.get_one_amount)
       #send email
-      render text:"Succeed"
+      "Success"
     else
-      render text:"You may have exchanged"
+      "You may have exchanged"
     end
   end
 end

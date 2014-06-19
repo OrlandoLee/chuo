@@ -3,8 +3,9 @@ class BusinessesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin!
   
-  def check_admin!
+  def check_admin! #later change this to check_business
     redirect_to root_path unless current_user.admin?
+   # redirect_to root_path unless current_user.role == 2 || current_user.admin? #only allow check this page if you are business owner or admin
   end
   
   # GET /businesses
@@ -74,6 +75,39 @@ class BusinessesController < ApplicationController
       format.html { redirect_to businesses_url }
       format.json { head :no_content }
     end
+  end
+  
+  def users
+    name = 'bridge' #put into session
+    business_ids = []
+    Business.where(name:name).each do |business|
+      business_ids << business.id
+    end      
+
+    all_business_records = Transaction.where(:business_id => business_ids)
+    
+    @results = {}
+
+    all_business_records.each do |r|
+      if r.exchange
+        sign = -1
+      else
+        sign = 1
+      end
+      user_email = r.user.email
+      if @results.has_key?(user_email)
+        @results[user_email] += sign*r.amount 
+      else
+        @results[user_email] = sign*r.amount 
+      end
+    end
+  end
+  
+  #Get /businesses/exchange/1
+  def exchange
+    user_id = User.find_by_email(params[:email]+'.'+params[:format]).id
+    name = 'bridge'
+    render text:Transaction.exchange(name,user_id)
   end
   
   private

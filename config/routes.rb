@@ -1,13 +1,22 @@
 Chuo::Application.routes.draw do
-  resources :businesses
+  root 'display#index'
+  resources :businesses do
+    collection do
+      get 'users'
+      get 'exchange'
+      get 'exchange/:email' => 'businesses#exchange'   
+    end
 
+  end
+  
   devise_for :users
   get "display/index"
+  get 'display/exchange' => 'display#exchange'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'display#index'
+
   
   # Example of regular route:
    get 'display/new/:id' => 'display#new'

@@ -21,5 +21,11 @@ class DisplayController < ApplicationController
     end
     #render text: params[:id]
   end
+  
+  def exchange
+    user_id = current_user.id
+    name = params[:name]
+    render text:Transaction.exchange(name,user_id)
+  end
 
 end

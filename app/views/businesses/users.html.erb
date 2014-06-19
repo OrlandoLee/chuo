@@ -1,0 +1,24 @@
+<h1>user results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>email</th>
+	  <th>amount</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each.map do |key,value| %>
+      <tr>
+        <td><%= key %></td>
+		<td><%= value %></td>
+		<td><%= link_to '兑换', {controller: "businesses", action: :exchange, email: key}, data: { confirm: 'Are you sure?' }  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
