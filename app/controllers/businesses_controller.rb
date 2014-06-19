@@ -5,6 +5,7 @@ class BusinessesController < ApplicationController
   
   def check_admin! #later change this to check_business
     redirect_to root_path unless current_user.admin?
+    @name = current_user.business_name
    # redirect_to root_path unless current_user.role == 2 || current_user.admin? #only allow check this page if you are business owner or admin
   end
   
@@ -78,7 +79,8 @@ class BusinessesController < ApplicationController
   end
   
   def users
-    name = 'bridge' #put into session
+    #name = 'bridge' #put into session
+    name = @name
     business_ids = []
     Business.where(name:name).each do |business|
       business_ids << business.id
@@ -105,8 +107,9 @@ class BusinessesController < ApplicationController
   
   #Get /businesses/exchange/1
   def exchange
+    #name = 'bridge'
+    name = @name
     user_id = User.find_by_email(params[:email]+'.'+params[:format]).id
-    name = 'bridge'
     render text:Transaction.exchange(name,user_id)
   end
   
