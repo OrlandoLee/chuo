@@ -4,15 +4,19 @@ class BusinessesController < ApplicationController
   before_action :check_admin!
   
   def check_admin! #later change this to check_business
-    redirect_to root_path unless current_user.admin?
+    #redirect_to root_path unless current_user.admin?
+    redirect_to root_path unless current_user.role == 2 || current_user.admin? #only allow check this page if you are business owner or admin
     @name = current_user.business_name
-   # redirect_to root_path unless current_user.role == 2 || current_user.admin? #only allow check this page if you are business owner or admin
   end
   
   # GET /businesses
   # GET /businesses.json
   def index
-    @businesses = Business.all
+    if @name.nil?  #admin
+      @businesses = Business.all
+    else
+      @businesses = Business.where(name: @name)
+    end
   end
 
   # GET /businesses/1
