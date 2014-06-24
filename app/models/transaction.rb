@@ -47,7 +47,7 @@ class Transaction < ActiveRecord::Base
     end
   end
   private 
-  def enqueue(email_object)
+  def self.enqueue(email_object)
     conn = Bunny.new
     conn.start
     ch   = conn.create_channel
