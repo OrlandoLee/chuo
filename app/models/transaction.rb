@@ -56,4 +56,17 @@ class Transaction < ActiveRecord::Base
     ch.default_exchange.publish(object_enqueued, :routing_key => q.name)
     conn.close
   end
+  
+  # dequeue receive:
+  #as a new thread in rails
+
+  # require "bunny"
+  #   conn = Bunny.new
+  #   conn.start
+  #   ch   = conn.create_channel
+  #   q    = ch.queue("email")
+  #   q.subscribe(:block => true) do |delivery_info, properties, body|
+  #     Marshal.load(body).deliver #must use deliver to send email
+  #   end
+  #   
 end
