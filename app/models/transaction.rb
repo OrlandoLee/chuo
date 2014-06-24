@@ -1,3 +1,5 @@
+require "bunny"
+
 class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :business 
@@ -37,9 +39,21 @@ class Transaction < ActiveRecord::Base
       business = Business.find_by_name(business_name)
       Transaction.create(user_id: user_id, business_id: business.id, exchange: true, amount: business.get_one_amount)
       #send email
+      enqueue(UserMail.exchange_notification_email(User.find(user_id),business_name))
+      #UserMail.exchange_notification_email(User.find(user_id),business_name).deliver
       "Success"
     else
       "You may have exchanged"
     end
+  end
+  private 
+  def enqueue(email_object)
+    conn = Bunny.new
+    conn.start
+    ch   = conn.create_channel
+    q    = ch.queue("email")
+    object_enqueued = Marshal.dump(email_object)
+    ch.default_exchange.publish(object_enqueued, :routing_key => q.name)
+    conn.close
   end
 end
