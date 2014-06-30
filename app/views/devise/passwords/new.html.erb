@@ -1,21 +1,10 @@
-<div id="forgetPasswordModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-  <div class="modal-content">
-      <div class="modal-header">
-          <h1 class="text-center">Forgot your password?</h1>
-      </div>
-      <div class="modal-body">
-		<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+		<h2 class="form-signin-heading">Forgot your password?</h2>
+				<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post,class: "form-signin", role: "form" }) do |f| %>
 		  <%= devise_error_messages! %>
-          <form class="form col-md-12 center-block">	
-            <div class="form-group">
-				  <%= f.email_field :email, autofocus: true, class: 'form-control input-lg',placeholder: 'Email' %>
-            </div>
 
-            <div class="form-group">
-              <%= f.submit "Send me reset password instructions", class: 'btn btn-primary btn-lg btn-block' %>
+				  <%= f.email_field :email, autofocus: true, class: 'form-control',placeholder: 'Email' %>
+              <%= f.submit "Send me reset password instructions", class: 'btn btn-primary btn-xlarge btn-block' %>
              <% end %>
-            </div>
 			<%= render "devise/shared/links" %>
           </form>
       </div>
