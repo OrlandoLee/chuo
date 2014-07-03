@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619061506) do
+ActiveRecord::Schema.define(version: 20140703063003) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20140619061506) do
     t.integer  "amount",      default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "latitude"
+    t.string   "longitude"
   end
 
   add_index "transactions", ["business_id"], name: "index_transactions_on_business_id", using: :btree
