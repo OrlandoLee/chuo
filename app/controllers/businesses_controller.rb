@@ -9,7 +9,7 @@ class BusinessesController < ApplicationController
   end
   
   def check_completed?
-    redirect_to new_business_metum_path unless current_user.business_metum
+    redirect_to new_business_metum_path unless current_user.business_metum || current_user.admin
   end
   # GET /businesses
   # GET /businesses.json
