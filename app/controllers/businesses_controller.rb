@@ -1,20 +1,25 @@
 class BusinessesController < ApplicationController
   before_action :set_business, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :check_admin!
+  before_action :check_business!
+  before_action :check_completed?
   
-  def check_admin! #later change this to check_business
-    #redirect_to root_path unless current_user.admin?
-    redirect_to root_path unless current_user.role == 2 || current_user.admin? #only allow check this page if you are business owner or admin
+  def check_business!
+    redirect_to root_path unless current_user.role == 2 || current_user.admin
     @name = current_user.business_name
   end
   
+  def check_completed?
+    true
+    #current_user.business_meta_data all completed
+    #if not redirect to complete page
+  end
   # GET /businesses
   # GET /businesses.json
   def index
-    if @name.nil?  #admin
-      @businesses = Business.all
-    else
+     if current_user.admin
+       @businesses = Business.all
+     else
       @businesses = Business.where(name: @name)
     end
   end

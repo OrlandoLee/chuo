@@ -1,6 +1,7 @@
 class DisplayController < ApplicationController
   before_action :authenticate_user!
   def index
+    redirect_to businesses_path if current_user.role == 2
     @record = Transaction.squash(current_user.id)
   end
   
