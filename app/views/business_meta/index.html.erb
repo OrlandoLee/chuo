@@ -13,6 +13,7 @@
   </thead>
 
   <tbody>
+	<% if current_user.admin %> 
     <% @business_meta.each do |business_metum| %>
       <tr>
         <td><%= business_metum.name %></td>
@@ -22,12 +23,23 @@
         <td><%= business_metum.logo %></td>
         <td><%= link_to 'Show', business_metum %></td>
         <td><%= link_to 'Edit', edit_business_metum_path(business_metum) %></td>
-        <td><%= link_to 'Destroy', business_metum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+	<% end %>
+	<% else business_metum = @business_meta%> 
+	<tr>
+        <td><%= business_metum.name %></td>
+        <td><%= business_metum.redeem_number %></td>
+        <td><%= business_metum.location %></td>
+        <td><%= business_metum.phone %></td>
+        <td><%= business_metum.logo %></td>
+        <td><%= link_to 'Show', business_metum %></td>
+        <td><%= link_to 'Edit', edit_business_metum_path(business_metum) %></td>
       </tr>
     <% end %>
+
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Business metum', new_business_metum_path %>
+
