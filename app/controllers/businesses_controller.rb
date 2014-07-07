@@ -112,10 +112,8 @@ class BusinessesController < ApplicationController
   
   #Get /businesses/exchange/1
   def exchange
-    #name = 'bridge'
-    name = @name
     user_id = User.find_by_email(params[:email]+'.'+params[:format]).id
-    render text:Transaction.exchange(name,user_id)
+    render text:Transaction.exchange(user_id,current_user.business_metum.id)
   end
   
   private

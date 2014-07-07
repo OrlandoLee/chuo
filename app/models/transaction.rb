@@ -14,34 +14,33 @@ class Transaction < ActiveRecord::Base
       else
         sign = 1
       end
-      business_name = r.business.name
-      if result.has_key?(business_name)
-        result[business_name] += sign*r.amount 
+      business_meta_id = r.business.business_meta_id
+      if result.has_key?(business_meta_id)
+        result[business_meta_id] += sign*r.amount 
       else
-        result[business_name] = sign*r.amount 
+        result[business_meta_id] = sign*r.amount 
       end
     end
     result
   end
   
-  def self.allow_exchange?(user_amount,business_name)
-    business_get_one_amount = Business.find_by_name(business_name).get_one_amount
-    if !user_amount.nil? && !business_get_one_amount.nil? && business_get_one_amount<= user_amount
+  def self.allow_exchange?(user_amount,business_meta_id)
+    business_redeem_number = BusinessMetum.find(business_meta_id).redeem_number
+    if !user_amount.nil? && !business_redeem_number.nil? && business_redeem_number<= user_amount
       true
     else
       false
     end
   end
 
-  def self.exchange(business_name,user_id)
+  def self.exchange(user_id,business_meta_id)
     result = Transaction.squash(user_id)
-    user_amount = result[business_name]
+    user_amount = result[business_meta_id]
     
-    if Transaction.allow_exchange?(user_amount,business_name)
-      business = Business.find_by_name(business_name)
-      Transaction.create(user_id: user_id, business_id: business.id, exchange: true, amount: business.get_one_amount)
+    if Transaction.allow_exchange?(user_amount,business_meta_id)
+      Transaction.create(user_id: user_id, business_id: Business.find_by_business_meta_id(business_meta_id).id, exchange: true, amount: BusinessMetum.find(business_meta_id).redeem_number)
       #send email
-      enqueue(UserMail.exchange_notification_email(User.find(user_id),business_name))
+      enqueue(UserMail.exchange_notification_email(User.find(user_id), BusinessMetum.find(business_meta_id).name))
       #UserMail.exchange_notification_email(User.find(user_id),business_name).deliver
       "Success"
     else

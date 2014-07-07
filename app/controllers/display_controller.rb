@@ -7,7 +7,7 @@ class DisplayController < ApplicationController
   
   def new
     begin
-      regulated_time_range = 1
+      regulated_time_range = 0
       qr_code = params[:id]
       business = Business.find_by qr_code: qr_code #returns only one
       scanned = Transaction.exists?(user_id: current_user.id, business_id: business.id,:created_at => regulated_time_range.hour.ago..Time.now)

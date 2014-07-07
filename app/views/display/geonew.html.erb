@@ -1,6 +1,26 @@
-<%=@record.each do |r|
-	p r
-	end
-%>
-succeed
-should display the designed page for users cards
+<%= link_to('Logout', destroy_user_session_path, :method => :delete) %>      
+<h1>Display#geonew</h1>
+<p>Find me in app/views/display/geonew.html.erb</p>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+	  <th>amount</th>
+	  <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @record.each.map do |name,amount| %>
+      <tr>
+        <td><%= name %></td>
+		<td><%= amount %></td>
+		<td><%= link_to '兑换', {controller: "display", action: :exchange, name: name}, data: { confirm: 'Are you sure?' }  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+sers cards
