@@ -1,0 +1,33 @@
+<h1>Listing business_meta</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Redeem number</th>
+      <th>Location</th>
+      <th>Phone</th>
+      <th>Logo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @business_meta.each do |business_metum| %>
+      <tr>
+        <td><%= business_metum.name %></td>
+        <td><%= business_metum.redeem_number %></td>
+        <td><%= business_metum.location %></td>
+        <td><%= business_metum.phone %></td>
+        <td><%= business_metum.logo %></td>
+        <td><%= link_to 'Show', business_metum %></td>
+        <td><%= link_to 'Edit', edit_business_metum_path(business_metum) %></td>
+        <td><%= link_to 'Destroy', business_metum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Business metum', new_business_metum_path %>

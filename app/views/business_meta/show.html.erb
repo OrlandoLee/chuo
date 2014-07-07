@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @business_metum.name %>
+</p>
+
+<p>
+  <strong>Redeem number:</strong>
+  <%= @business_metum.redeem_number %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @business_metum.location %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @business_metum.phone %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @business_metum.logo %>
+</p>
+
+<%= link_to 'Edit', edit_business_metum_path(@business_metum) %> |
+<%= link_to 'Back', business_meta_path %>

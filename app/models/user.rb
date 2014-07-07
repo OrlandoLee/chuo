@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :transactions
   has_many :businesses, through: :transactions
+  has_one :business_metum
 end

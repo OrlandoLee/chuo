@@ -3,6 +3,8 @@ require "bunny"
 class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :business 
+  delegate :business_meta, to: :business
+   
   def self.squash(user_id)
     result = {}
     all_user_record = Transaction.where({user_id:user_id})

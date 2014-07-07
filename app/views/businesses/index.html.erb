@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
       <th>Quantity</th>
       <th>QR CODE</th>
       <th></th>
@@ -17,7 +16,6 @@
   <tbody>
     <% @businesses.each do |business| %>
       <tr>
-        <td><%= business.name %></td>
         <td><%= business.quantity %></td>
         <td><%= link_to 'Show', business %></td>
         <td><%= link_to 'Edit', edit_business_path(business) %></td>

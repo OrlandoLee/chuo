@@ -6,13 +6,10 @@ class BusinessesController < ApplicationController
   
   def check_business!
     redirect_to root_path unless current_user.role == 2 || current_user.admin
-    @name = current_user.business_name
   end
   
   def check_completed?
-    true
-    #current_user.business_meta_data all completed
-    #if not redirect to complete page
+    redirect_to new_business_metum_path unless current_user.business_metum
   end
   # GET /businesses
   # GET /businesses.json
@@ -20,7 +17,7 @@ class BusinessesController < ApplicationController
      if current_user.admin
        @businesses = Business.all
      else
-      @businesses = Business.where(name: @name)
+      @businesses = Business.where(business_meta_id: current_user.business_metum.id)
     end
   end
 
@@ -42,9 +39,9 @@ class BusinessesController < ApplicationController
   # POST /businesses
   # POST /businesses.json   
   def create
-
     @business = Business.find_by(business_params) || Business.new(business_params)
       @business.random = Random.rand(100000)
+      @business.business_meta_id = current_user.business_metum.id
       respond_to do |format|
         if @business.save
           @business.reload
@@ -88,10 +85,9 @@ class BusinessesController < ApplicationController
   end
   
   def users
-    #name = 'bridge' #put into session
-    name = @name
+
     business_ids = []
-    Business.where(name:name).each do |business|
+    Business.where(business_meta_id: current_user.business_metum.id).each do |business|
       business_ids << business.id
     end      
 
@@ -130,6 +126,6 @@ class BusinessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
-      params.require(:business).permit(:name, :quantity)
+      params.require(:business).permit(:quantity)
     end
 end

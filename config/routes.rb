@@ -1,4 +1,6 @@
 Chuo::Application.routes.draw do
+  resources :business_meta
+
   root 'display#index'
   resources :businesses do
     collection do
