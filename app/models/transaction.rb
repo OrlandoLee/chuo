@@ -34,9 +34,9 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.exchange(user_id,business_meta_id)
+  
     result = Transaction.squash(user_id)
-    user_amount = result[business_meta_id]
-    
+    user_amount = result[business_meta_id.to_i]
     if Transaction.allow_exchange?(user_amount,business_meta_id)
       Transaction.create(user_id: user_id, business_id: Business.find_by_business_meta_id(business_meta_id).id, exchange: true, amount: BusinessMetum.find(business_meta_id).redeem_number)
       #send email
