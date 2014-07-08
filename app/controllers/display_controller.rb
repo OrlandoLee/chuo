@@ -30,7 +30,7 @@ class DisplayController < ApplicationController
      t.save!
      
      @record = Transaction.squash(current_user.id)
-     #render text:'stuff'
+     render 'display/index'
   end
   
   def exchange
