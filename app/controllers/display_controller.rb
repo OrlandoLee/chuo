@@ -35,8 +35,8 @@ class DisplayController < ApplicationController
   
   def exchange
     user_id = current_user.id
-    name = params[:name]
-    render text:Transaction.exchange(name,user_id)
+    meta_id = params[:meta_id]
+    render text:Transaction.exchange(user_id,meta_id)
   end
 
 end

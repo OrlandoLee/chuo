@@ -4,18 +4,18 @@
 <table>
   <thead>
     <tr>
-      <th>name</th>
+      <th>meta_id</th>
 	  <th>amount</th>
 	  <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @record.each.map do |name,amount| %>
+    <% @record.each.map do |meta_id,amount| %>
       <tr>
-        <td><%= name %></td>
+        <td><%= meta_id %></td>
 		<td><%= amount %></td>
-		<td><%= link_to '兑换', {controller: "display", action: :exchange, name: name}, data: { confirm: 'Are you sure?' }  %></td>
+		<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' }  %></td>
       </tr>
     <% end %>
   </tbody>
