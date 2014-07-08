@@ -15,7 +15,7 @@
       <tr>
         <td><%= meta_id %></td>
 		<td><%= amount %></td>
-		<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' }  %></td>
+		<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
       </tr>
     <% end %>
   </tbody>

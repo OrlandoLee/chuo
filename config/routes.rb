@@ -6,7 +6,7 @@ Chuo::Application.routes.draw do
     collection do
       get 'users'
       get 'exchange'
-      get 'exchange/:email' => 'businesses#exchange'   
+      post 'exchange/:email' => 'businesses#exchange'   
     end
 
   end
@@ -14,7 +14,7 @@ Chuo::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "users/registrations"}
   #devise_for :users
   get "display/index"
-  get 'display/exchange' => 'display#exchange'
+  post 'display/exchange' => 'display#exchange'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

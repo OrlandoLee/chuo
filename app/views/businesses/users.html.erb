@@ -19,7 +19,7 @@
       <tr>
         <td><%= key %></td>
 		<td><%= value %></td>
-		<td><%= link_to '兑换', {controller: "businesses", action: :exchange, email: key}, data: { confirm: 'Are you sure?' }  %></td>
+		<td><%= link_to '兑换', {controller: "businesses", action: :exchange, email: key}, data: { confirm: 'Are you sure?' }, method: :post  %></td>
       </tr>
     <% end %>
   </tbody>
