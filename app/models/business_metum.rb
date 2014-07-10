@@ -3,4 +3,5 @@ class BusinessMetum < ActiveRecord::Base
   validates :redeem_number, presence: true
   belongs_to :user
   has_many :transactions, through: :businesses
+  mount_uploader :logo, LogoUploader
 end

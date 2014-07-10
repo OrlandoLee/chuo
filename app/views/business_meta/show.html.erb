@@ -22,7 +22,7 @@
 
 <p>
   <strong>Logo:</strong>
-  <%= @business_metum.logo %>
+  <%=image_tag @business_metum.logo_url(:thumb).to_s %>
 </p>
 
 <%= link_to 'Edit', edit_business_metum_path(@business_metum) %> |
