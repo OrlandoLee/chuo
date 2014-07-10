@@ -31,7 +31,8 @@
         <td><%= business_metum.redeem_number %></td>
         <td><%= business_metum.location %></td>
         <td><%= business_metum.phone %></td>
-        <td><%= business_metum.logo %></td>
+		
+        <td><%=image_tag business_metum.logo_url(:thumb).to_s %></td>
         <td><%= link_to 'Show', business_metum %></td>
         <td><%= link_to 'Edit', edit_business_metum_path(business_metum) %></td>
       </tr>
