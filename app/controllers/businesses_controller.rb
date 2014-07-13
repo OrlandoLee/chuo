@@ -64,6 +64,8 @@ class BusinessesController < ApplicationController
   # PATCH/PUT /businesses/1.json
   def update
     respond_to do |format|
+      # @business.random = Random.rand(100000)、#1
+      #  if @business.update(business_params.merge({"random" => @business.random,"qr_code" => @business.generate_qrcode_hash}))
       if @business.update(business_params)
         format.html { redirect_to @business, notice: 'Business was successfully updated.' }
         format.json { head :no_content }
