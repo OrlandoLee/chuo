@@ -11,8 +11,11 @@ Chuo::Application.routes.draw do
 
   end
   
+  devise_scope :user do
+    get 'users/sign_up_business', :to => 'users/registrations#new_business'
+  end
+  
   devise_for :users, :controllers => {:registrations => "users/registrations"}
-  #devise_for :users
   get "display/index"
   post 'display/exchange' => 'display#exchange'
   # The priority is based upon order of creation: first created -> highest priority.
