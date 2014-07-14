@@ -65,7 +65,11 @@ class BusinessMetaController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_business_metum
-      @business_metum = BusinessMetum.find(params[:id])
+      if current_user.admin
+        @business_metum = BusinessMetum.find(params[:id])
+      else
+        @business_metum = BusinessMetum.find(current_user.business_metum.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
