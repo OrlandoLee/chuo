@@ -33,8 +33,8 @@ class BusinessMetaController < ApplicationController
   # POST /business_meta
   # POST /business_meta.json
   def create
-  @business_metum = BusinessMetum.find_by(user_id: current_user.id) || BusinessMetum.new(business_metum_params)
-  @business_metum.user_id = current_user.id
+    @business_metum = BusinessMetum.find_by(user_id: current_user.id) || BusinessMetum.new(business_metum_params)
+    @business_metum.user_id = current_user.id
     respond_to do |format|
       if @business_metum.save
         format.html { redirect_to @business_metum, notice: 'Business metum was successfully created.' }
@@ -63,13 +63,17 @@ class BusinessMetaController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_business_metum
+  # Use callbacks to share common setup or constraints between actions.
+  def set_business_metum
+    if current_user.admin
       @business_metum = BusinessMetum.find(params[:id])
+    else
+      @business_metum = BusinessMetum.find(current_user.business_metum.id)
     end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def business_metum_params
-      params.require(:business_metum).permit(:name, :redeem_number, :location, :phone, :logo)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def business_metum_params
+    params.require(:business_metum).permit(:name, :redeem_number, :location, :phone, :logo)
+  end
 end

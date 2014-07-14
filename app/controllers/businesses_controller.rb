@@ -111,13 +111,13 @@ class BusinessesController < ApplicationController
   end
   
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_business
-      @business = Business.find(params[:id])
-      if current_user.business_metum.id != @business.business_meta_id
-        redirect_to root_path
-      end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_business
+    @business = Business.find(params[:id])
+    if (current_user.business_metum.id != @business.business_meta_id) && !current_user.admin
+      redirect_to root_path
     end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def business_params
