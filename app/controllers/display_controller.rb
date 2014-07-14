@@ -16,7 +16,18 @@ class DisplayController < ApplicationController
       else  
         Transaction.create(user_id: current_user.id, business_id: business.id, amount: business.quantity)
         business.random = Random.rand(100000)
-        business.update({"random" => business.random,"qr_code" => business.generate_qrcode_hash})#2
+        business.update({"random" => business.random,"qr_code" => business.generate_qrcode_hash})#2   
+        #qr_code = RQRCode::QRCode.new("http://#{request.host}:#{request.port}/display/new/#{business.qr_code}",:size => 8, :level => :h)
+        puts business.id.inspect
+        Pusher["#{business.id}"].trigger('my_event', {
+              # host: request.host,
+              # port: request.port,
+              # qr_code: business.qr_code,
+              # size: 8,
+              # level: 'h'
+              # qr_code: qr_code
+              id: business.id
+          })
         #@record = Transaction.squash(current_user.id)
       end
     rescue

@@ -1,3 +1,22 @@
+<head>
+  <title>Pusher Test</title>
+  <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+	Pusher.log = function(message) {
+      if (window.console && window.console.log) {
+        window.console.log(message);
+      }
+    };
+    var pusher = new Pusher('42a4f1fb8ef4a97a4648');
+ 	var id = <%=@business.id%>;
+	var id_string = id.toString()
+    var channel = pusher.subscribe(id_string);
+    channel.bind('my_event', function(data) {
+		//alert(data.id);
+		window.location.replace("/businesses/"+data.id);
+    });
+  </script>
+</head>
 <style type="text/css">
  table {
   border-width: 0;
@@ -25,17 +44,18 @@
   <strong>Quantity:</strong>
   <%= @business.quantity %>
 </p>
-<table><% @qr_code.modules.each_index do |x| -%>
-   <tr>
-   <% @qr_code.modules.each_index do |y| -%>
-    <% if @qr_code.dark?(x,y) -%>
-    <td class="black"/>
-    <% else -%>
-    <td class="white"/>
-    <% end -%>
-   <% end -%>
-   </tr>
- <% end -%>
+<table>
+	<% @qr_code.modules.each_index do |x| -%>
+	   <tr>
+	   <% @qr_code.modules.each_index do |y| -%>
+	    <% if @qr_code.dark?(x,y) -%>
+	    <td class="black"/>
+	    <% else -%>
+	    <td class="white"/>
+	    <% end -%>
+	   <% end -%>
+	   </tr>
+	 <% end -%>
 </table>
 <%= link_to 'Edit', edit_business_path(@business) %> |
 <%= link_to 'Back', businesses_path %>
