@@ -8,6 +8,7 @@ gem 'mysql2'
 gem 'devise'
 gem 'rqrcode'
 gem 'bunny','>= 0.9.1'
+gem 'pusher'
 #gem 'rails_admin'
 
 
