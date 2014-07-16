@@ -9,6 +9,7 @@ gem 'devise'
 gem 'rqrcode'
 gem 'bunny','>= 0.9.1'
 gem 'pusher'
+gem 'newrelic_rpm'
 #gem 'rails_admin'
 
 
