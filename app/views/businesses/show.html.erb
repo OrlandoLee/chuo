@@ -1,13 +1,6 @@
-<head>
-  <title>Pusher Test</title>
+
   <script src="//js.pusher.com/2.2/pusher.min.js" type="text/javascript"></script>
   <script type="text/javascript">
-	  // Enable pusher logging - don't include this in production
-	// Pusher.log = function(message) {
-	//       if (window.console && window.console.log) {
-	//         window.console.log(message);
-	//       }
-	//     };
     var pusher = new Pusher('42a4f1fb8ef4a97a4648');
  	var id = <%=@business.id%>;
 	var id_string = id.toString()
@@ -17,7 +10,6 @@
 		window.location.replace("/businesses/"+data.id);
     });
   </script>
-</head>
 <style type="text/css">
  table {
   border-width: 0;
