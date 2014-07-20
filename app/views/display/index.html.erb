@@ -20,7 +20,6 @@
     <% end %>
   </tbody>
 </table>
-
 <script type="text/javascript">
 mixpanel.identify("<%=current_user.id%>");
 mixpanel.people.set({
@@ -30,6 +29,4 @@ mixpanel.people.set({
 });
 mixpanel.track('user signed in');
 </script>
-</script>
-
 
