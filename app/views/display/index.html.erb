@@ -1,6 +1,5 @@
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>      
-<h1>Display#index</h1>
-<p>Find me in app/views/display/index.html.erb</p>
+<h3>Drink</h3>
 <table class="table">
   <tbody>
     <% @record.each.map do |meta_id,amount| %>
@@ -14,10 +13,8 @@
 		<%=glyph('star-empty'.to_sym) %> 
 		<%end%>
 		</td>
-			<%if amount > 10%>
+			<%if amount >= @business_metum[meta_id].redeem_number%>
 			<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
-			<%else%>
-			<td><%='same color'%></td>
 			<%end%>
       </tr>
     <% end %>

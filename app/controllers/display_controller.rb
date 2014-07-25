@@ -2,11 +2,7 @@ class DisplayController < ApplicationController
   before_action :authenticate_user!
   def index
     redirect_to businesses_path if current_user.role == 2
-    @record = Transaction.squash(current_user.id)
-    @business_metum  = {}
-    @record.each do |r|
-      @business_metum[r[0]] = BusinessMetum.find(r[0]) 
-    end
+    get_display_data
   end
   
   def new
@@ -32,10 +28,10 @@ class DisplayController < ApplicationController
               # qr_code: qr_code
               id: business.id
           })
-        #@record = Transaction.squash(current_user.id)
+        @record = Transaction.squash(current_user.id)
       end
     rescue
-      render text:"the code you scanned is invalid, please refreash"
+          render text:"the code you scanned is invalid, please refreash"
     end
     #render text: params[:id]
   end
@@ -46,7 +42,7 @@ class DisplayController < ApplicationController
      t.longitude = params[:longitude]
      t.save!
      
-     @record = Transaction.squash(current_user.id)
+     get_display_data
      render 'display/index'
   end
   
@@ -56,4 +52,13 @@ class DisplayController < ApplicationController
     render text:Transaction.exchange(user_id,meta_id)
   end
 
+  private
+  
+  def get_display_data 
+    @record = Transaction.squash(current_user.id)
+    @business_metum  = {}
+    @record.each do |r|
+       @business_metum[r[0]] = BusinessMetum.find(r[0]) 
+    end
+  end
 end
