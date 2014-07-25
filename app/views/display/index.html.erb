@@ -1,25 +1,29 @@
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>      
 <h1>Display#index</h1>
 <p>Find me in app/views/display/index.html.erb</p>
-<table>
-  <thead>
-    <tr>
-      <th>meta_id</th>
-	  <th>amount</th>
-	  <th></th>
-    </tr>
-  </thead>
-
+<table class="table">
   <tbody>
     <% @record.each.map do |meta_id,amount| %>
       <tr>
-        <td><%= meta_id %></td>
-		<td><%= amount %></td>
-		<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
+        <td><%=image_tag @business_metum[meta_id].logo_url(:thumb).to_s%></td>
+		<td>
+		<%amount.times do |_| %>
+		<%=glyph('star'.to_sym) %> 
+		<%end%>
+		<% (@business_metum[meta_id].redeem_number - amount).times do |_| %>
+		<%=glyph('star-empty'.to_sym) %> 
+		<%end%>
+		</td>
+			<%if amount > 10%>
+			<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
+			<%else%>
+			<td><%='same color'%></td>
+			<%end%>
       </tr>
     <% end %>
   </tbody>
 </table>
+
 <script type="text/javascript">
 mixpanel.identify("<%=current_user.id%>");
 mixpanel.people.set({

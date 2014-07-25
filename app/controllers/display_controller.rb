@@ -3,6 +3,10 @@ class DisplayController < ApplicationController
   def index
     redirect_to businesses_path if current_user.role == 2
     @record = Transaction.squash(current_user.id)
+    @business_metum  = {}
+    @record.each do |r|
+      @business_metum[r[0]] = BusinessMetum.find(r[0]) 
+    end
   end
   
   def new
