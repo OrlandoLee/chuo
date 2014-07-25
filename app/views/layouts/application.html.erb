@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML> 
 <html lang="en">
 <head>
   <title>Chuo</title>
@@ -19,6 +19,9 @@ mixpanel.init("c4708fb3b1844127be568e259a28ef44");</script><!-- end Mixpanel -->
     <p class="alert"><%= alert %></p>
 	<div class="container-fluid">
 	  <%= yield %>
-	</div>
+	<% if user_signed_in?%>
+	<%= link_to('登出', destroy_user_session_path, :method => :delete) %>   
+	<%end%>  
+	</div>   
 </body>
 </html>
