@@ -3,8 +3,10 @@
   <tbody>
     <% @record.each.map do |meta_id,amount| %>
       <tr>
-        <td><%=image_tag @business_metum[meta_id].logo_url(:thumb).to_s%></td>
-		<td>
+		  <td class="col-xs-4">
+			<%=image_tag @business_metum[meta_id].logo_url(:thumb).to_s%>
+			</td>
+		<td class="col-xs-4">
 		<%amount.times do |_| %>
 		<%=glyph('star'.to_sym) %> 
 		<%end%>
@@ -13,7 +15,7 @@
 		<%end%>
 		</td>
 			<%if amount >= @business_metum[meta_id].redeem_number%>
-			<td><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
+			<td class="col-xs-2"><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
 			<%end%>
       </tr>
     <% end %>
