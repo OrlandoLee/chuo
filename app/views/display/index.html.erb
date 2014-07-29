@@ -1,4 +1,38 @@
-<h3>Drink</h3>
+<div class="container">
+	<div class="header">
+		<div class="logo">
+			<%= image_tag "log.jpg" %>
+		</div>
+	</div>
+
+	<div class="tag">
+		<div class="tag-block1"><%= image_tag "tag1.jpg" %></div>
+		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
+		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
+		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
+	</div>
+
+	<div class="content">
+		<div class="content-block1">
+			<%= image_tag "content1.jpg" %>
+		</div>
+		<div class="content-block2">
+			<%= image_tag "content2.jpg" %>
+		</div>
+		<div class="content-block2">
+			<%= image_tag "content1.jpg" %>
+		</div>
+		<div class="content-block2">
+			<%= image_tag "content2.jpg" %>
+		</div>
+	</div>
+
+	<div class="bottom">
+		<%= image_tag "exit.jpg", :id => 'exit' %>
+	</div>
+</div>
+
+<!-- <h3>Drink</h3>
 <table class="table">
   <tbody>
     <% @record.each.map do |meta_id,amount| %>
@@ -30,5 +64,5 @@ mixpanel.people.set({
     "$last_login": new Date()
 });
 mixpanel.track('user signed in');
-</script>
+</script> -->
 
