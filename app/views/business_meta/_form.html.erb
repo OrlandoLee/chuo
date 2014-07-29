@@ -1,4 +1,4 @@
-<%= form_for(@business_metum) do |f| %>
+<%= form_for(@business_metum, html: {class: "form-sign", role: "form"}) do |f| %>
   <% if @business_metum.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@business_metum.errors.count, "error") %> prohibited this business_metum from being saved:</h2>
@@ -11,27 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :redeem_number %><br>
-    <%= f.number_field :redeem_number %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :logo %><br>
-    <%= f.file_field :logo %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+
+    <%= f.number_field :redeem_number, autofocus: true, class: 'form-control', placeholder: 'Redeem Number'%>
+  
+    <%= f.text_field :location, autofocus: true, class: 'form-control', placeholder: 'Location' %>
+  
+    <%= f.text_field :phone, autofocus: true, class: 'form-control', placeholder: 'Phone' %>
+  
+    <span class="btn btn-file">
+      Logo Upload <%= f.file_field :logo%>
+    </span>
+
+    <%= f.submit "Create Business Metum", class: 'btn btn-primary btn-lg btn-block' %>
 <% end %>
