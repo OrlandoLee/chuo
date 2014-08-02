@@ -6,6 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     new
   end
   
+  def new
+    @signin_page = true
+    super
+  end
+  
   protected
  
   def configure_permitted_parameters
