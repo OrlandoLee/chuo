@@ -43,9 +43,9 @@
 		
 		<%if amount >= @business_metum[meta_id].redeem_number%>
 		<%if i%2 == 1 %>
-	    	<div class="content-block-btn-left">
+	    	<div class="content-block-btn-right">
 		<%else%>
-			<div class="content-block-btn-right">
+			<div class="content-block-btn-left">
 		<%end%>
 		<%= link_to image_tag("block-btn-#{i}.png"), {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></div>
 		<%end%>
