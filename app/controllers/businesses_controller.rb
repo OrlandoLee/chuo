@@ -31,25 +31,26 @@ class BusinessesController < ApplicationController
   # POST /businesses
   # POST /businesses.json   
   def create
-    @business = Business.find_by(business_params) || Business.new(business_params)
-      @business.random = Random.rand(100000)
-      @business.business_meta_id = current_user.business_metum.id
-      respond_to do |format|
-        if @business.save
-          @business.reload
-          @business.qr_code = @business.generate_qrcode_hash
-          if @business.save
-          format.html { redirect_to @business, notice: 'Business was successfully created.' }
-          format.json { render action: 'show', status: :created, location: @business }
-          else
-            format.html { render action: 'new' }
-            format.json { render json: @business.errors, status: :unprocessable_entity }
+    business_merged_params = business_params.merge({business_meta_id: current_user.business_metum.id})
+    @business = Business.find_by(business_merged_params) || Business.new(business_merged_params)
+          @business.random = Random.rand(100000)
+          @business.business_meta_id = current_user.business_metum.id
+          respond_to do |format|
+            if @business.save
+              @business.reload
+              @business.qr_code = @business.generate_qrcode_hash
+              if @business.save
+              format.html { redirect_to @business, notice: 'Business was successfully created.' }
+              format.json { render action: 'show', status: :created, location: @business }
+              else
+                format.html { render action: 'new' }
+                format.json { render json: @business.errors, status: :unprocessable_entity }
+              end
+            else
+              format.html { render action: 'new' }
+              format.json { render json: @business.errors, status: :unprocessable_entity }
+            end
           end
-        else
-          format.html { render action: 'new' }
-          format.json { render json: @business.errors, status: :unprocessable_entity }
-        end
-      end
   end
 
   # PATCH/PUT /businesses/1
