@@ -1,60 +1,66 @@
 <div class="container">
 	<div class="header">
-		<div class="logo">
-			<%= image_tag "log.jpg" %>
-		</div>
+		<%= image_tag "logo.jpg", :class => 'logo' %>
 	</div>
 
 	<div class="tag">
-		<div class="tag-block1"><%= image_tag "tag1.jpg" %></div>
-		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
-		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
-		<div class="tag-block2"><%= image_tag "tag1.jpg" %></div>
+		<div class="tag-block"><%= image_tag "tag1.jpg"%></div>
+		<div class="tag-block"><%= image_tag "tag2.jpg"%></div>
+		<div class="tag-block"><%= image_tag "tag3.jpg"%></div>
+		<div class="tag-block"><%= image_tag "tag4.jpg"%></div>
 	</div>
+	
+<div class="content">
+    <% @record.each_with_index.map do |r,i| 
+	meta_id = r[0]
+	amount = r[1]
+	i = i%5 + 1
+	%>
+	
+	<div class=<%="content-block#{i}"%>>
+		<%= image_tag "block-bg-#{i}.png"%>
+		
+		<%if i%2 == 1 %>
+    	<div class="content-block-white-left"><%= image_tag "block-white-left.png"%>
+		<%else%>
+		<div class="content-block-white-right"><%= image_tag "block-white-right.png"%>
+		<%end%>
+	    	<div class="content-block-logo"><%=image_tag @business_metum[meta_id].logo_url(:thumb).to_s%></div>
+	    </div>
+	
+	<%if i%2 == 1 %>
+    	<div class="content-block-circle-right">
+	<%else%>
+		<div class="content-block-circle-left">
+	<%end%>
+			<%amount.times do |_| %>
+				<%= image_tag "block-filled-#{i}.png", :class => 'content-block-circle'%>
+				<%end%>
+				<% (@business_metum[meta_id].redeem_number - amount).times do |_| %>
+					<%= image_tag "block-hollow-#{i}.png", :class => 'content-block-circle'%>
+					<%end%>
+		</div>
+		
+		<%if amount >= @business_metum[meta_id].redeem_number%>
+		<%if i%2 == 1 %>
+	    	<div class="content-block-btn-left">
+		<%else%>
+			<div class="content-block-btn-right">
+		<%end%>
+		<%= link_to image_tag("block-btn-#{i}.png"), {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></div>
+		<%end%>
+	</div>
+	
+    <% end%>
 
-	<div class="content">
-		<div class="content-block1">
-			<%= image_tag "content1.jpg" %>
-		</div>
-		<div class="content-block2">
-			<%= image_tag "content2.jpg" %>
-		</div>
-		<div class="content-block2">
-			<%= image_tag "content1.jpg" %>
-		</div>
-		<div class="content-block2">
-			<%= image_tag "content2.jpg" %>
-		</div>
-	</div>
-
-	<div class="bottom">
-		<%= image_tag "exit.jpg", :id => 'exit' %>
-	</div>
+<% if user_signed_in?%>
+<div class="bottom">
+	<%= link_to image_tag("exit.jpg", :id => 'exit'), destroy_user_session_path, :method => :delete%>
+</div>
+<%end%>
+</div>
 </div>
 
-<!-- <h3>Drink</h3>
-<table class="table">
-  <tbody>
-    <% @record.each.map do |meta_id,amount| %>
-      <tr>
-		  <td class="col-xs-4">
-			<%=image_tag @business_metum[meta_id].logo_url(:thumb).to_s%>
-			</td>
-		<td class="col-xs-4">
-		<%amount.times do |_| %>
-		<%=glyph('star'.to_sym) %> 
-		<%end%>
-		<% (@business_metum[meta_id].redeem_number - amount).times do |_| %>
-		<%=glyph('star-empty'.to_sym) %> 
-		<%end%>
-		</td>
-			<%if amount >= @business_metum[meta_id].redeem_number%>
-			<td class="col-xs-2"><%= link_to '兑换', {controller: "display", action: :exchange, meta_id: meta_id}, data: { confirm: 'Are you sure?' } ,method: :post %></td>
-			<%end%>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <script type="text/javascript">
 mixpanel.identify("<%=current_user.id%>");
@@ -64,5 +70,5 @@ mixpanel.people.set({
     "$last_login": new Date()
 });
 mixpanel.track('user signed in');
-</script> -->
+</script>
 
