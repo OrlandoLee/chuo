@@ -17,7 +17,11 @@
 	i = i%5 + 1
 	%>
 	
-	<div class=<%="content-block#{i}"%>>
+	<% if i == 1 %>
+	<div class="content-block1">
+	<%else%>
+	<div class="content-block2">
+	<%end%>
 		<%= image_tag "block-bg-#{i}.png"%>
 		
 		<%if i%2 == 1 %>
