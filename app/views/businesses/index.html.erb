@@ -32,6 +32,9 @@
 <br>
 
 <%= link_to 'New Business', new_business_path %>
+<div class="link-sign">
+	<%=link_to ' 查看商家信息',business_meta_path, {:style=>'color:#FFFFFF;'} %>
+</div>
 
 <script type="text/javascript">
 mixpanel.identify("<%=current_user.id%>");
