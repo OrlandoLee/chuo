@@ -6,6 +6,7 @@ gem 'rails', '4.1.1'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 gem 'devise'
+gem 'devise-i18n'
 gem 'rqrcode'
 gem 'bunny','>= 0.9.1'
 gem 'pusher'

@@ -1,4 +1,4 @@
-<%= form_for(@business) do |f| %>
+<%= form_for(@business, html: {class: "form-sign", role: "form"})  do |f| %>
   <% if @business.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@business.errors.count, "error") %> prohibited this business from being saved:</h2>
@@ -12,10 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :quantity %><br>
-    <%= f.number_field :quantity %>
+    <%= f.number_field :quantity , class: 'form-control', placeholder:'二维码对应数目'%>
   </div>
   <div class="actions">
-    <%= f.submit %>
+       <%= f.submit "创建新的二维码", class: 'btn btn-primary btn-lg btn-block' %>
   </div>
 <% end %>

@@ -8,8 +8,8 @@
 <table id="users_results" class="table table-bordered">
   <thead>
     <tr>
-      <th>email</th>
-	  <th>amount</th>
+      <th>邮箱</th>
+	  <th>购买数目</th>
 	  <th></th>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
       <tr>
         <td><%= key %></td>
 		<td><%= value %></td>
-		<td><%= link_to '兑换', {controller: "businesses", action: :exchange, email: key}, data: { confirm: 'Are you sure?' }, method: :post  %></td>
+		<td><%= link_to '兑换', {controller: "businesses", action: :exchange, email: key}, data: { confirm: '你确定要兑换么?' }, method: :post  %></td>
       </tr>
     <% end %>
   </tbody>

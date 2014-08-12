@@ -1,15 +1,15 @@
-<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
+<%= link_to('登出', destroy_user_session_path, :method => :delete) %> 
 <%unless current_user.admin%>
 <%= link_to('查看用户消费记录', users_businesses_path, :method => :get) %> 
 <%end%>
-<h1>Listing businesses</h1>
+<h1>二维码</h1>
 
 <table>
   <thead>
     <tr>
-	  <th>Name</th>
-      <th>Quantity</th>
-      <th>QR CODE</th>
+	  <th>商家名称</th>
+      <th>二维码对应数目</th>
+      <th>二维码</th>
       <th></th>
 	  <th></th>
       <th></th>
@@ -21,9 +21,9 @@
       <tr>
 		<td><%= BusinessMetum.find(business.business_meta_id).name%></td>
         <td><%= business.quantity %></td>
-        <td><%= link_to 'Show', business %></td>
-        <td><%= link_to 'Edit', edit_business_path(business) %></td>
-        <td><%= link_to 'Destroy', business, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '显示二维码', business %></td>
+        <td><%= link_to '编辑二维码', edit_business_path(business) %></td>
+        <td><%= link_to '删除二维码', business, method: :delete, data: { confirm: '你确定要删除这个二维码么?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,7 +31,7 @@
 
 <br>
 
-<%= link_to 'New Business', new_business_path %>
+<%= link_to '创建新的二维码', new_business_path %>
 <div class="link-sign">
 	<%=link_to ' 查看商家信息',business_meta_path, {:style=>'color:#FFFFFF;'} %>
 </div>

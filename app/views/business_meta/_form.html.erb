@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder:'商店名称' %>
 
-    <%= f.number_field :redeem_number, autofocus: true, class: 'form-control', placeholder: 'Redeem Number'%>
+    <%= f.number_field :redeem_number, autofocus: true, class: 'form-control', placeholder: '兑换数目'%>
   
-    <%= f.text_field :location, autofocus: true, class: 'form-control', placeholder: 'Location' %>
+    <%= f.text_field :location, autofocus: true, class: 'form-control', placeholder: '地址' %>
   
-    <%= f.text_field :phone, autofocus: true, class: 'form-control', placeholder: 'Phone' %>
+    <%= f.text_field :phone, autofocus: true, class: 'form-control', placeholder: '电话' %>
   
     <span class="btn btn-file">
-      Logo Upload <%= f.file_field :logo%>
+      上传商标 <%= f.file_field :logo%>
     </span>
 
-    <%= f.submit "Create Business Metum", class: 'btn btn-primary btn-lg btn-block' %>
+    <%= f.submit "提交", class: 'btn btn-primary btn-lg btn-block' %>
 <% end %>

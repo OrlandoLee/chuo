@@ -1,29 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>商家名称:</strong>
   <%= @business_metum.name %>
 </p>
 
 <p>
-  <strong>Redeem number:</strong>
+  <strong>兑换数目:</strong>
   <%= @business_metum.redeem_number %>
 </p>
 
 <p>
-  <strong>Location:</strong>
+  <strong>地点:</strong>
   <%= @business_metum.location %>
 </p>
 
 <p>
-  <strong>Phone:</strong>
+  <strong>电话:</strong>
   <%= @business_metum.phone %>
 </p>
 
 <p>
-  <strong>Logo:</strong>
+  <strong>商标:</strong>
   <%=image_tag @business_metum.logo_url(:thumb).to_s %>
 </p>
 
-<%= link_to 'Edit', edit_business_metum_path(@business_metum) %> |
-<%= link_to 'Back', business_meta_path %>
+<%= link_to '编辑商家信息', edit_business_metum_path(@business_metum) %> |
+<%= link_to '后退', business_meta_path %>

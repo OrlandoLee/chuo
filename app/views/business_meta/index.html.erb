@@ -1,13 +1,13 @@
-<h1>Listing business_meta</h1>
+<h1>商家基本信息</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Redeem number</th>
-      <th>Location</th>
-      <th>Phone</th>
-      <th>Logo</th>
+      <th>商家名称</th>
+      <th>兑换数目</th>
+      <th>地点</th>
+      <th>电话</th>
+      <th>商标</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -33,8 +33,8 @@
         <td><%= business_metum.phone %></td>
 		
         <td><%=image_tag business_metum.logo_url(:thumb).to_s %></td>
-        <td><%= link_to 'Show', business_metum %></td>
-        <td><%= link_to 'Edit', edit_business_metum_path(business_metum) %></td>
+        <td><%= link_to '显示商家信息', business_metum %></td>
+        <td><%= link_to '编辑', edit_business_metum_path(business_metum) %></td>
       </tr>
     <% end %>
 
