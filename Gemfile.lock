@@ -60,7 +60,6 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    devise-i18n (0.10.4)
     erubis (2.7.0)
     execjs (2.2.0)
     hike (1.2.3)
@@ -168,7 +167,6 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
-  devise-i18n
   jbuilder (~> 1.2)
   jquery-datatables-rails!
   jquery-rails
