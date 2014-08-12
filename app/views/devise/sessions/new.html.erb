@@ -3,11 +3,11 @@
 	<%= image_tag "cup.png" %>
 </div>
 <!-- <h2 class="form-signin-heading">Please sign in</h2> -->
-<%= f.email_field :email, autofocus: true, class: 'form-control',placeholder: 'Email' %>
-<%= f.password_field :password, autocomplete: "off", class: 'form-control',placeholder: 'Password'%>
+<%= f.email_field :email, autofocus: true, class: 'form-control',placeholder: '邮箱' %>
+<%= f.password_field :password, autocomplete: "off", class: 'form-control',placeholder: '密码'%>
 <label class="checkbox">
 	<% if devise_mapping.rememberable? -%>
-	<div><%= f.check_box :remember_me,{checked: true}%> <%= f.label :记住我, style:"color: white"%></div>
+	<div><%= f.check_box :remember_me,{checked: true}%> <%= f.label ':记住我', style:"color: white"%></div>
 	<% end -%>
 </label>
 <%= f.submit "登录", class: 'btn btn-default btn-lg btn-block', type: 'submit' %>
