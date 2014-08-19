@@ -11,6 +11,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
   
+  def create
+    super
+    ::UserMail.welcome(@user).deliver unless @user.invalid?
+  end
+  
   protected
  
   def configure_permitted_parameters
