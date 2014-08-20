@@ -11,13 +11,13 @@
     </div>
   <% end %>
 
-    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder:'商店名称' %>
+    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder:'商店名称(必填)）' %>
 
-    <%= f.number_field :redeem_number, autofocus: true, class: 'form-control', placeholder: '兑换数目'%>
+    <%= f.number_field :redeem_number, autofocus: true, class: 'form-control', placeholder: '兑换数目(必填)'%>
   
-    <%= f.text_field :location, autofocus: true, class: 'form-control', placeholder: '地址' %>
+    <%= f.text_field :location, autofocus: true, class: 'form-control', placeholder: '地址(方便我们推荐给用户)' %>
   
-    <%= f.text_field :phone, autofocus: true, class: 'form-control', placeholder: '电话' %>
+    <%= f.text_field :phone, autofocus: true, class: 'form-control', placeholder: '电话(方便我们联系您)' %>
   
     <span class="btn btn-file">
       上传商标 <%= f.file_field :logo%>
