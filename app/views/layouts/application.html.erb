@@ -20,6 +20,12 @@ mixpanel.init("c4708fb3b1844127be568e259a28ef44");</script><!-- end Mixpanel -->
 <!--     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p> -->
 	<div class="container-fluid">
+		<%if current_user.present? && current_user.role == 2%>
+		<%= link_to('查看用户消费记录', users_businesses_path, :method => :get) %> 
+		<%=link_to ' 回到生成二维码页面',businesses_path, {:style=>'color:#FFFFFF;'} %>
+		<%=link_to ' 查看商家信息',business_meta_path, {:style=>'color:#FFFFFF;'} %>
+		<%= link_to('登出', destroy_user_session_path, :method => :delete) %> 
+		<%end%>
 	  <%= yield %>
 	</div>   
 </body>
