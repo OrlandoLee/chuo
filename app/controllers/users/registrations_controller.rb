@@ -13,7 +13,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def create
     super
-    ::UserMail.welcome(@user).deliver unless @user.invalid?
+    Transaction.enqueue(::UserMail.welcome(@user)) unless @user.invalid?
+    # ::UserMail.welcome(@user).deliver unless @user.invalid?
   end
   
   protected

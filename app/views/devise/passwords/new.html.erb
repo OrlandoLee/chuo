@@ -1,7 +1,7 @@
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post,class: "form-sign", role: "form" }) do |f| %>
 <%= devise_error_messages! %>
 <%= f.email_field :email, autofocus: true, class: 'form-control',placeholder: 'Email' %>
-<%= f.submit "Send me reset password instructions", class: 'btn btn-default btn-xlarge btn-block' %>
+<%= f.submit "重置密码", class: 'btn btn-default btn-xlarge btn-block' %>
 <% end %>
 <div class="link-sign">
 	<%=link_to '注册',new_user_registration_path, {:style=>'color:#FFFFFF;'} %>
