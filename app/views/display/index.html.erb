@@ -1,14 +1,3 @@
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script>
-$(window).load(function(){
- $('.uploaded-logo').each(function(){
-  var imgClass = (this.width/this.height > 0.6) ? 'img-tall' : '';
-  $(this).addClass(imgClass);
- })
-})
-</script>
 <div class="container">
 	<div class="header">
 		<%= image_tag "logo.jpg", :class => 'logo' %>
@@ -76,6 +65,15 @@ $(window).load(function(){
 </div>
 </div>
 
+
+<script>
+$(window).load(function(){
+ $('.uploaded-logo').each(function(){
+  var imgClass = (this.width/this.height > 0.6) ? 'img-tall' : '';
+  $(this).addClass(imgClass);
+ })
+})
+</script>
 
 <script type="text/javascript">
 mixpanel.identify("<%=current_user.id%>");
