@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.day, :at => '11:30pm' do
+every 1.day, :at => '6:40am' do
   runner "UserMail.send_report().deliver"
 end
