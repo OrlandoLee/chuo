@@ -1,0 +1,17 @@
+<h1>new Users:</h1>
+
+<% @users.each do |u| 
+  if u.role == 1	
+%>
+ <br><%= u.email%></br>
+<%end%>
+<%end%>
+
+
+<h1>new Owners:</h1>
+<% @users.each do |u| 
+  if u.role == 2	
+%>
+ <br><%= u.email%></br>
+<%end%>
+<%end%>
