@@ -13,4 +13,10 @@ class UserMail < ActionMailer::Base
     @url = 'chuochuo.me'
     mail(to:@user.email,subject: '账号注册成功，欢迎加入戳戳')
   end
+  
+  def send_report()
+    @users = User.where("created_at >= :start_date",{start_date: Date.today})
+    email = 'lizongshenglzs@gmail.com'
+    mail(to:email,subject: "#{Time.now} report")
+  end
 end
