@@ -35,8 +35,11 @@ class BusinessMetaController < ApplicationController
   def create
     @business_metum = BusinessMetum.find_by(user_id: current_user.id) || BusinessMetum.new(business_metum_params)
     @business_metum.user_id = current_user.id
+
     respond_to do |format|
       if @business_metum.save
+        current_user.business_meta_id = @business_metum.id
+        current_user.save
         format.html { redirect_to @business_metum, notice: 'Business metum was successfully created.' }
         format.json { render action: 'show', status: :created, location: @business_metum }
       else
