@@ -96,11 +96,13 @@ class BusinessesController < ApplicationController
       else
         sign = 1
       end
+      if r.user
       user_email = r.user.email
       if @results.has_key?(user_email)
         @results[user_email] += sign*r.amount 
       else
         @results[user_email] = sign*r.amount 
+      end
       end
     end
   end
