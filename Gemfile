@@ -49,6 +49,7 @@ end
 
 group :development do
   gem 'rmagick', :require => 'RMagick'
+  gem 'bullet'
 end
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
